@@ -87,7 +87,7 @@ pipeline {
 
                             kubectl get deployment flask-app -n icanio >/dev/null 2>&1
 
-                            if [\$? -ne 0]; then
+                            if [ \$? -ne 0 ]; then
                                 echo "New deployment"
                                 kubectl apply -f /tmp/k8s/
                             else
