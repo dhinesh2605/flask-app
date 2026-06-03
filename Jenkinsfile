@@ -113,6 +113,7 @@ pipeline {
                         kubectl get pods -n icanio
                         kubectl get svc -n icanio
                         kubectl get deployment flask-app -n icanio
+                        '
                     """
                 }
             }
