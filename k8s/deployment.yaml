@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+  namespace: icanio
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app
+
+  template:
+    metadata:
+      labels:
+        app: flask-app
+        
+    spec:
+      serviceAccountName: flask-sa
+      containers:
+      - name: flask-app
+
+        image: dhinesh2605/flask-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
