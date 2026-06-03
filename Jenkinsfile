@@ -32,7 +32,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'python3 -m py_comple app/app.py'
+                sh 'python3 -m py_compile app/app.py'
             }
         }
 
