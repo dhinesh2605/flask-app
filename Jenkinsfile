@@ -39,7 +39,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image: ${IMAGE_NAME}"
-                sh "docker build -t ${IMAGE_NAME} -t ${DOCKER_REGISTRY}/${APP_NAME}:latest app/"
+                sh "docker build -t ${IMAGE_NAME} -t ${DOCKER_REGISTRY}/${APP_NAME}:latest -f app/Dockerfile app/"
             }
         }
 
@@ -57,6 +57,7 @@ pipeline {
                     echo "Logging into Docker Hub and pushing image..."
                     sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
                     sh "docker push ${IMAGE_NAME}"
+                    sh "docker push ${DOCKER_REGISTRY}/${APP_NAME}:latest"
                 }
             }
         }
